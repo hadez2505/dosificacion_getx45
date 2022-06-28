@@ -9,12 +9,12 @@ class DosificacionRoute {
   static const initialRoute = '/';
 
   static final menuDosificacionOptions = <MenuDosificacionOptionsModel> [
-    MenuDosificacionOptionsModel(route: '/oxidacion',      name: 'OXIDACION', screen: const OxidacionScreen(),      icon: Icons.invert_colors_on_rounded, binding: OxidacionBinding()),
-    MenuDosificacionOptionsModel(route: '/absorcion',      name: 'OXIDACION', screen: const AbsorcionScreen(),      icon: Icons.invert_colors_on_rounded, binding: AbsorcionBinding()),
-    MenuDosificacionOptionsModel(route: '/cuagulacion',    name: 'OXIDACION', screen: const CuagualacionScreen(),   icon: Icons.invert_colors_on_rounded, binding: CuagulacionBinding()),
-    MenuDosificacionOptionsModel(route: '/floculacion',    name: 'OXIDACION', screen: const FloculacionScreen(),    icon: Icons.invert_colors_on_rounded, binding: FloculacionBinding()),
-    MenuDosificacionOptionsModel(route: '/estabilizacion', name: 'OXIDACION', screen: const EstabilizacionScreen(), icon: Icons.invert_colors_on_rounded, binding: EstabilizacionBinding()),
-    MenuDosificacionOptionsModel(route: '/desinfeccion',   name: 'OXIDACION', screen: const DesinfeccionScreen(),   icon: Icons.invert_colors_on_rounded, binding: DesinfeccionBinding()),
+    MenuDosificacionOptionsModel(route: '/oxidacion',      name: 'OXIDACION',   screen: const OxidacionScreen(),      icon: Icons.invert_colors_on_rounded, binding: OxidacionBinding()),
+    MenuDosificacionOptionsModel(route: '/absorcion',      name: 'CARBON',      screen: const AbsorcionScreen(),      icon: Icons.invert_colors_on_rounded, binding: AbsorcionBinding()),
+    MenuDosificacionOptionsModel(route: '/cuagulacion',    name: 'PAC',         screen: const CuagualacionScreen(),   icon: Icons.invert_colors_on_rounded, binding: CuagulacionBinding()),
+    MenuDosificacionOptionsModel(route: '/floculacion',    name: 'POLIMERO',    screen: const FloculacionScreen(),    icon: Icons.invert_colors_on_rounded, binding: FloculacionBinding()),
+    MenuDosificacionOptionsModel(route: '/estabilizacion', name: 'CAL',         screen: const EstabilizacionScreen(), icon: Icons.invert_colors_on_rounded, binding: EstabilizacionBinding()),
+    MenuDosificacionOptionsModel(route: '/desinfeccion',   name: 'HIPOCLORITO', screen: const DesinfeccionScreen(),   icon: Icons.invert_colors_on_rounded, binding: DesinfeccionBinding()),
   ];
 
   static List<GetPage<dynamic>>? getAppRoutesDosificacion(){
