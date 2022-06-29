@@ -1,3 +1,4 @@
+import 'package:dosificacion/app/core/utils/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,7 @@ void main() {
 
 class MyApp extends StatelessWidget {
   MyApp({Key? key}) : super(key: key);
+  //final DosificacionController dosificacionController = Get.put(DosificacionController());
 
   @override
   Widget build(BuildContext context) {

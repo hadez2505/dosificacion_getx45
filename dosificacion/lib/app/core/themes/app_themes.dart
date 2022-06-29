@@ -36,8 +36,6 @@ class AppTheme {
         textStyle: MaterialStateProperty.all(const TextStyle(fontSize: 20)),
         minimumSize: MaterialStateProperty.all(const Size(100,40))
       ),
-      
-
     )
   );
 }

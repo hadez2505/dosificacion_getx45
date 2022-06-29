@@ -9,7 +9,7 @@ class DosificacionRoute {
   static const initialRoute = '/';
 
   static final menuDosificacionOptions = <MenuDosificacionOptionsModel> [
-    MenuDosificacionOptionsModel(route: '/oxidacion',      name: 'OXIDACION',   screen: const OxidacionScreen(),      icon: Icons.invert_colors_on_rounded, binding: OxidacionBinding()),
+    MenuDosificacionOptionsModel(route: '/oxidacion',      name: 'OXIDACION',   screen:  OxidacionScreen(),      icon: Icons.invert_colors_on_rounded, binding: OxidacionBinding()),
     MenuDosificacionOptionsModel(route: '/absorcion',      name: 'CARBON',      screen: const AbsorcionScreen(),      icon: Icons.invert_colors_on_rounded, binding: AbsorcionBinding()),
     MenuDosificacionOptionsModel(route: '/cuagulacion',    name: 'PAC',         screen: const CuagualacionScreen(),   icon: Icons.invert_colors_on_rounded, binding: CuagulacionBinding()),
     MenuDosificacionOptionsModel(route: '/floculacion',    name: 'POLIMERO',    screen: const FloculacionScreen(),    icon: Icons.invert_colors_on_rounded, binding: FloculacionBinding()),

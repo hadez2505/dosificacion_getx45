@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
+import '../../core/themes/app_themes.dart';
 import 'local_widgets/altura_canaleta_card.dart';
 import 'package:dosificacion/app/core/utils/controllers.dart';
 import 'package:dosificacion/app/modules/dosificacion/local_widgets/menu_dosificacion.dart';
@@ -19,8 +20,9 @@ class DosificacionScreen extends StatelessWidget {
           child: Column(
             children: [
               AlturaCanaletaCard(function: function,),
-              const Card(
-                child: MenuDosificacion(),
+              Container(
+                decoration: AppTheme.decorationContainer,
+                child: const MenuDosificacion()
               )
             ],
           ),
