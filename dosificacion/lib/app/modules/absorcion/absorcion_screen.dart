@@ -43,7 +43,7 @@ class AbsorcionScreen extends StatelessWidget {
                               CustomInputField(),
                               CustomInputField(),
                               CustomInputField(),
-                              Row(
+                              Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ElevatedButton(
@@ -81,7 +81,7 @@ class AbsorcionScreen extends StatelessWidget {
                               CustomInputField(),
                               CustomInputField(),
                               CustomInputField(),
-                              Row(
+                              Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   ElevatedButton(
