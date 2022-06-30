@@ -1,10 +1,9 @@
-import 'package:dosificacion/app/global_widgets/custom_input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/themes/app_themes.dart';
 import '../../core/utils/controllers.dart';
-import 'package:dosificacion/app/global_widgets/caudales_card.dart';
+import 'package:dosificacion/app/global_widgets/global_widgets.dart';
 
 class OxidacionScreen extends StatelessWidget {
   OxidacionScreen({Key? key}) : super(key: key);
