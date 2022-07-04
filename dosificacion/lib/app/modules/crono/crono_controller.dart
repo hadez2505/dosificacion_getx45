@@ -11,5 +11,9 @@ class CronoController extends GetxController {
 
   get stopwatch => _stopwatch;
 
-  void start() => _stopwatch.onExecute.add(StopWatchExecute.start);
+  start() => _stopwatch.onExecute.add(StopWatchExecute.start);
+
+  
+
+  display(int value) => StopWatchTimer.getDisplayTime(value, hours: true);
 }

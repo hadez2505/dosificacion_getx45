@@ -13,11 +13,11 @@ class CronoScreen extends StatelessWidget {
       body: GetBuilder<CronoController>(builder: (_) {
         return StreamBuilder<int>(
           stream: _.stopwatch.rawTime,
-          initialData: _.stopwatch.rawTime.value,
+          // initialData: _.stopwatch.rawTime.value,
           builder: (context, snap) {
             final value = snap.data!;
-            final displayTime =
-                StopWatchTimer.getDisplayTime(value, hours: true);
+            final displayTime = _.display(value);
+            // StopWatchTimer.getDisplayTime(value, hours: true);
             return Column(
               children: <Widget>[
                 Padding(
@@ -40,9 +40,21 @@ class CronoScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400),
                   ),
                 ),
+                TextButton(onPressed: () => _.start(), child: Text('Start')),
                 TextButton(
-            onPressed: () => _.stopwatch.onExecute.add(StopWatchExecute.start),
-            child: Text('Start'))
+                    onPressed: () =>
+                        _.stopwatch.onExecute.add(StopWatchExecute.stop),
+                    child: Text('Stop')),
+                TextButton(
+                    onPressed: () =>
+                        _.stopwatch.onExecute.add(StopWatchExecute.reset),
+                    child: Text('Reset')),
+                TextButton(
+                    onPressed: () => _.stopwatch.setPresetSecondTime(5),
+                    child: Text('Set Second')),
+                TextButton(
+                    onPressed: () => _.stopwatch.clearPresetTime(),
+                    child: Text('Clear'))
               ],
             );
           },

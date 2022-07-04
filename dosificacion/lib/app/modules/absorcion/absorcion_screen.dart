@@ -13,9 +13,9 @@ class AbsorcionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final RxString caudalModulo1 = Get.find<DosificacionController>().caudalModulo1;
     final RxString caudalModulo2 = Get.find<DosificacionController>().caudalModulo2;
-    final size = MediaQuery.of(context).size;
     const String tituloModulo1 = 'Caudal Modulo 1';
     const String tituloModulo2 = 'Caudal Modulo 2';
+    bool isPlaying = false;
     return Scaffold(
       appBar: AppBar(title: const Center(child: Text('Absorcion Screen'))),
       body: GetBuilder<AbsorcionController>(
@@ -53,13 +53,14 @@ class AbsorcionScreen extends StatelessWidget {
                               margin: const EdgeInsets.all(5),
                               padding: const EdgeInsets.all(10),
                               width: double.infinity,
-                              height: size.height * 0.5,
                               decoration: AppTheme.decorationContainer,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [                              
                                   CustomInputField(),
+                                  SizedBox(height: 10,),
                                   CustomInputField(),
+                                  SizedBox(height: 10,),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
@@ -90,13 +91,14 @@ class AbsorcionScreen extends StatelessWidget {
                               margin: const EdgeInsets.all(5),
                               padding: const EdgeInsets.all(10),
                               width: double.infinity,
-                              height: size.height * 0.5,
                               decoration: AppTheme.decorationContainer,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                 children: [
                                   CustomInputField(),
+                                  SizedBox(height: 10,),
                                   CustomInputField(),
+                                  SizedBox(height: 10,),
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
@@ -121,23 +123,33 @@ class AbsorcionScreen extends StatelessWidget {
                   ],
                 ),
                 Card(
-                        child: Container(
-                          margin: const EdgeInsets.all(5),
-                          padding: const EdgeInsets.all(10),
-                          width: double.infinity,
-                          decoration: AppTheme.decorationContainer,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              CustomInputField(
-                                label: 'Tiempo de aforo (s)',
-                                hintText: 'ingrese un valor',
-                                setFunction: _.setTiempo,
-                              ),
-                            ],
-                          ),
+                  child: Container(
+                    margin: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(10),
+                    width: double.infinity,
+                    decoration: AppTheme.decorationContainer,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CustomInputField(
+                          label: 'Tiempo de aforo (s)',
+                          hintText: 'ingrese un valor',
+                          setFunction: _.setTiempo,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            IconButton(onPressed: (){}, icon: Icon(Icons.timelapse), color: AppTheme.primary, iconSize: 35),
+                            IconButton(onPressed: ()=> isPlaying = true,icon: Icon(Icons.play_circle_fill_outlined), color: AppTheme.primary, iconSize: 45,),
+                            IconButton(onPressed: ()=> isPlaying = false,icon: Icon(Icons.pause_circle_filled_outlined), color: AppTheme.primary, iconSize: 45,),
+                            IconButton(onPressed: (){}, icon: Icon(Icons.refresh_outlined), color: AppTheme.primary, iconSize: 35)
+                          ]
                         )
-                      ),
+                      ],
+                    ),
+                  )
+                ),
+                
               ],
             ),
           );
