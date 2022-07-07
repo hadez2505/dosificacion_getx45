@@ -6,7 +6,7 @@ import 'package:dosificacion/app/core/utils/models.dart';
 import 'package:dosificacion/app/core/utils/bindings.dart';
 
 class DosificacionRoute {
-  static const initialRoute = '/';
+  static const initialRoute = '/dosificacion';
 
   static final menuDosificacionOptions = <MenuDosificacionOptionsModel> [
     MenuDosificacionOptionsModel(route: '/oxidacion',      name: 'OXIDACION',   screen:  OxidacionScreen(),           icon: Icons.invert_colors_on_rounded, binding: OxidacionBinding()),
@@ -20,7 +20,7 @@ class DosificacionRoute {
 
   static List<GetPage<dynamic>>? getAppRoutesDosificacion(){
     List<GetPage<dynamic>>? appRoutes = [];
-    appRoutes.addAll({GetPage(name: '/', page:() => const DosificacionScreen(), binding:DosificacionBinding())});
+    appRoutes.addAll({GetPage(name: '/dosificacion', page:() => const DosificacionScreen(), binding:DosificacionBinding())});
     for(final option in menuDosificacionOptions){
       appRoutes.addAll({GetPage(name: option.route, page: ()=>option.screen, binding: option.binding)});
     }

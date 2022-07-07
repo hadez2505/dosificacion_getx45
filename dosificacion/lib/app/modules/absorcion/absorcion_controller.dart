@@ -27,7 +27,7 @@ class AbsorcionController extends GetxController {
       _ppmModulo2.value = value != '' ? value : '';
   void setTiempo(String value) => _tiempo.value = value != '' ? value : '';
 
-  void calcularAforoModulo1({required String ppm, required String caudal}) {
+  void calcularAforoModulo1({required String ppm, required String caudal,}) {
     _aforoModulo1.value = ((((double.parse(caudal) * double.parse(ppm)) /
                              (double.parse(_concentracion.value) * 1000)) *
                               1000) *

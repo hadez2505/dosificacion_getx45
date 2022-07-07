@@ -13,6 +13,13 @@ class AbsorcionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final RxString caudalModulo1 = Get.find<DosificacionController>().caudalModulo1;
     final RxString caudalModulo2 = Get.find<DosificacionController>().caudalModulo2;
+    final Function display = Get.find<DosificacionController>().displayTime;
+    final TextEditingController controllerTime = TextEditingController();
+    final timeWatch = Get.find<DosificacionController>().stopWatch;
+    final start = Get.find<DosificacionController>().start;
+    final stop = Get.find<DosificacionController>().stop;
+    final reset = Get.find<DosificacionController>().reset;
+    final setSeconds = Get.find<DosificacionController>().setSeconds;
     const String tituloModulo1 = 'Caudal Modulo 1';
     const String tituloModulo2 = 'Caudal Modulo 2';
     bool isPlaying = false;
@@ -64,9 +71,15 @@ class AbsorcionScreen extends StatelessWidget {
                                   Column(
                                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      ElevatedButton(
-                                        child: const Text('PPM'),
-                                        onPressed: () {},
+                                      StreamBuilder<int>(
+                                        stream: timeWatch.rawTime,
+                                        builder: (context,snap){
+                                          final value = snap.data;
+                                        return ElevatedButton(
+                                          child: const Text('PPM'),
+                                          onPressed: () => print(controllerTime.text),
+                                        );
+                                      }
                                       ),
                                       SizedBox(height: 10,),
                                       ElevatedButton(
@@ -122,32 +135,43 @@ class AbsorcionScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                Card(
-                  child: Container(
-                    margin: const EdgeInsets.all(5),
-                    padding: const EdgeInsets.all(10),
-                    width: double.infinity,
-                    decoration: AppTheme.decorationContainer,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        CustomInputField(
-                          label: 'Tiempo de aforo (s)',
-                          hintText: 'ingrese un valor',
-                          setFunction: _.setTiempo,
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            IconButton(onPressed: (){}, icon: Icon(Icons.timelapse), color: AppTheme.primary, iconSize: 35),
-                            IconButton(onPressed: ()=> isPlaying = true,icon: Icon(Icons.play_circle_fill_outlined), color: AppTheme.primary, iconSize: 45,),
-                            IconButton(onPressed: ()=> isPlaying = false,icon: Icon(Icons.pause_circle_filled_outlined), color: AppTheme.primary, iconSize: 45,),
-                            IconButton(onPressed: (){}, icon: Icon(Icons.refresh_outlined), color: AppTheme.primary, iconSize: 35)
-                          ]
-                        )
-                      ],
-                    ),
-                  )
+                StreamBuilder<int>(
+                  stream: timeWatch.rawTime,
+                  initialData: timeWatch.rawTime.value,
+                  builder: (context,snap){
+                    final value = snap.data!;
+                    final displayTime = display(value);
+                    controllerTime.text = displayTime;
+                  return Card(
+                    child: Container(
+                      margin: const EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(10),
+                      width: double.infinity,
+                      decoration: AppTheme.decorationContainer,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          CustomInputField(
+                            controller: controllerTime,
+                            label: 'Tiempo de aforo (s)',
+                            hintText: 'ingrese un valor',
+                            setFunction: _.setTiempo,
+                          ),
+                          
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              IconButton(onPressed: ()=>setSeconds(), icon: Icon(Icons.timelapse), color: AppTheme.primary, iconSize: 35),
+                              IconButton(onPressed: ()=> start(),icon: Icon(Icons.play_circle_fill_outlined), color: AppTheme.primary, iconSize: 45,),
+                              IconButton(onPressed: ()=> stop(),icon: Icon(Icons.pause_circle_filled_outlined), color: AppTheme.primary, iconSize: 45,),
+                              IconButton(onPressed: ()=>reset(), icon: Icon(Icons.refresh_outlined), color: AppTheme.primary, iconSize: 35)
+                            ]
+                          )
+                        ],
+                      ),
+                    )
+                  );
+                },
                 ),
                 
               ],

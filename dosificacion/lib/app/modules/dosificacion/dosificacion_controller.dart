@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
 class DosificacionController extends GetxController {
-  final _stopwatch = StopWatchTimer(mode: StopWatchMode.countUp);
+  final _stopWatch = StopWatchTimer(mode: StopWatchMode.countUp);
   var _caudalModulo1 = '0'.obs;
   var _caudalModulo2 = '0'.obs;
   var _caudalTotal = '0'.obs;
@@ -12,7 +12,19 @@ class DosificacionController extends GetxController {
   RxString get caudalModulo1 => _caudalModulo1;
   RxString get caudalModulo2 => _caudalModulo2;
   RxString get caudalTotal => _caudalTotal;
-  StopWatchTimer get stopwatch => _stopwatch;
+  StopWatchTimer get stopWatch => _stopWatch;
+
+
+  @override
+  void onInit() {
+    _stopWatch.rawTime.listen((value) => print('rawTime $value ${StopWatchTimer.getDisplayTime(value)}'));
+    // _stopWatch.minuteTime.listen((value) => print('minuteTime $value'));
+    _stopWatch.secondTime.listen((value) => print('secondTime $value'));
+    _stopWatch.records.listen((value) => print('records $value'));
+    _stopWatch.fetchStop.listen((value) => print('stop from stream'));
+    _stopWatch.fetchEnded.listen((value) => print('ended from stream'));
+    super.onInit();
+  }
 
   void setcaudalModulo1(String caudalModulo1) {
     _caudalModulo1.value = caudalModulo1 != '' ? caudalModulo1 : '';
@@ -33,9 +45,12 @@ class DosificacionController extends GetxController {
     caudalModulo(caudal);
   }
 
-  void start() => _stopwatch.onExecute.add(StopWatchExecute.start);
-  void stop() => _stopwatch.onExecute.add(StopWatchExecute.stop);
-  void reset() => _stopwatch.clearPresetTime();
-  void setSeconds() => _stopwatch.setPresetSecondTime(5);
-  displayTime(int value) => StopWatchTimer.getDisplayTime(value, hours:true);
+  void start() => _stopWatch.onExecute.add(StopWatchExecute.start);
+  void stop() => _stopWatch.onExecute.add(StopWatchExecute.stop);
+  void reset() {
+    _stopWatch.clearPresetTime();
+    _stopWatch.onExecute.add(StopWatchExecute.reset);
+    }
+  void setSeconds() => _stopWatch.setPresetSecondTime(5);
+  displayTime(int value) => StopWatchTimer.getDisplayTime(value, hours:true, milliSecond: false);
 }
