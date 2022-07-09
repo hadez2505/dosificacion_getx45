@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:get/get.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
+import '../../data/provider/db_provider.dart';
+
 class DosificacionController extends GetxController {
   final _stopWatch = StopWatchTimer(mode: StopWatchMode.countUp);
   var _caudalModulo1 = '0'.obs;
@@ -20,9 +22,7 @@ class DosificacionController extends GetxController {
     _stopWatch.rawTime.listen((value) => print('rawTime $value ${StopWatchTimer.getDisplayTime(value)}'));
     // _stopWatch.minuteTime.listen((value) => print('minuteTime $value'));
     _stopWatch.secondTime.listen((value) => print('secondTime $value'));
-    _stopWatch.records.listen((value) => print('records $value'));
-    _stopWatch.fetchStop.listen((value) => print('stop from stream'));
-    _stopWatch.fetchEnded.listen((value) => print('ended from stream'));
+    
     super.onInit();
   }
 
