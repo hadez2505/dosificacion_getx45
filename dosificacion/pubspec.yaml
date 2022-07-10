@@ -35,7 +35,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   get:
   stop_watch_timer: ^1.5.0
-  path_provider: ^2.0.11
   sqflite: ^2.0.3
 
 dev_dependencies:
