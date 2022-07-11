@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -24,11 +22,7 @@ class DbProvider {
     print(path);
 
     //Crear base de datos
-    return openDatabase(
-      path, 
-      version: 1,
-      onCreate: _onCreateDb 
-    );
+    return openDatabase(path, version: 1, onCreate: _onCreateDb);
   }
 
   Future _onCreateDb(Database db, int version) async {
@@ -36,7 +30,8 @@ class DbProvider {
       CREATE TABLE dosificacion(
         caudalModulo1 TEXT,
         caudalModulo2 TEXT  
-      )
+      );
+      
     ''');
   }
 }
