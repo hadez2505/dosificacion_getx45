@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/themes/app_themes.dart';
-import '../../core/utils/controllers.dart';
+import '../../core/utils/barrel files/controllers.dart';
 
 class AbsorcionScreen extends StatelessWidget {
   const AbsorcionScreen({Key? key}) : super(key: key);

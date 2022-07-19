@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:dosificacion/app/core/utils/controllers.dart';
+import 'package:dosificacion/app/core/utils/barrel files/controllers.dart';
 import 'package:dosificacion/app/modules/dosificacion/local_widgets/altura_canaleta.dart';
 
 class AlturaCanaletaCard extends StatelessWidget {

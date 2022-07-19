@@ -1,9 +1,8 @@
-import 'package:dosificacion/app/core/utils/controllers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'app/core/themes/app_themes.dart';
-import 'app/core/utils/routes.dart';
+import 'app/core/utils/barrel files/routes.dart';
 
 void main() {
   runApp(MyApp());

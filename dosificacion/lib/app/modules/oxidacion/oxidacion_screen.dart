@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/themes/app_themes.dart';
-import '../../core/utils/controllers.dart';
+import '../../core/utils/barrel files/controllers.dart';
 import 'package:dosificacion/app/global_widgets/global_widgets.dart';
 
 class OxidacionScreen extends StatelessWidget {

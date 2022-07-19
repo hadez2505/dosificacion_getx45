@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../core/themes/app_themes.dart';
 import '../../data/provider/db_provider.dart';
 import 'local_widgets/altura_canaleta_card.dart';
-import 'package:dosificacion/app/core/utils/controllers.dart';
+import 'package:dosificacion/app/core/utils/barrel files/controllers.dart';
 import 'package:dosificacion/app/modules/dosificacion/local_widgets/menu_dosificacion.dart';
 
 class DosificacionScreen extends StatelessWidget {

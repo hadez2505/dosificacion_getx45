@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:dosificacion/app/core/utils/barrel%20files/models.dart';
+import 'package:dosificacion/app/modules/dosificacion/dosificacion_repository.dart';
 import 'package:get/get.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
@@ -10,20 +12,48 @@ class DosificacionController extends GetxController {
   var _caudalModulo1 = '0'.obs;
   var _caudalModulo2 = '0'.obs;
   var _caudalTotal = '0'.obs;
+  DatosDosificacionModel datos = DatosDosificacionModel();
 
   RxString get caudalModulo1 => _caudalModulo1;
   RxString get caudalModulo2 => _caudalModulo2;
   RxString get caudalTotal => _caudalTotal;
   StopWatchTimer get stopWatch => _stopWatch;
 
-
   @override
   void onInit() {
-    _stopWatch.rawTime.listen((value) => print('rawTime $value ${StopWatchTimer.getDisplayTime(value)}'));
+    _stopWatch.rawTime.listen((value) =>
+        print('rawTime $value ${StopWatchTimer.getDisplayTime(value)}'));
     // _stopWatch.minuteTime.listen((value) => print('minuteTime $value'));
     _stopWatch.secondTime.listen((value) => print('secondTime $value'));
-    
+    listarDatos();
     super.onInit();
+  }
+
+  nuevoDato() async {
+    final nuevoDato = DatosDosificacionModel(
+        caudalModulo1: _caudalModulo1.value,
+        caudalModulo2: _caudalModulo2.value);
+    final id = await DbProvider.db.insert(nuevoDato);
+    nuevoDato.id = id;
+    datos.caudalModulo1 = nuevoDato.caudalModulo1;
+    datos.caudalModulo2 = nuevoDato.caudalModulo2;
+    datos.id = nuevoDato.id;
+  }
+
+  updateDatos() async {
+    final nuevoDato = DatosDosificacionModel(
+        caudalModulo1: _caudalModulo1.value,
+        caudalModulo2: _caudalModulo2.value);
+    final id = await DbProvider.db.update(nuevoDato);
+    nuevoDato.id = id;
+    datos.caudalModulo1 = nuevoDato.caudalModulo1;
+    datos.caudalModulo2 = nuevoDato.caudalModulo2;
+    datos.id = nuevoDato.id;
+  }
+
+  listarDatos() async {
+    final res = await DbProvider.db.listar();
+    print(res);
   }
 
   void setcaudalModulo1(String caudalModulo1) {
@@ -50,7 +80,29 @@ class DosificacionController extends GetxController {
   void reset() {
     _stopWatch.clearPresetTime();
     _stopWatch.onExecute.add(StopWatchExecute.reset);
-    }
+  }
+
   void setSeconds() => _stopWatch.setPresetSecondTime(5);
-  displayTime(int value) => StopWatchTimer.getDisplayTime(value, hours:true, milliSecond: false);
+  displayTime(int value) =>
+      StopWatchTimer.getDisplayTime(value, hours: true, milliSecond: false);
+
+  @override
+  void onClose() {
+    super.onClose();
+    if (datos.id == null) {
+      nuevoDato();
+    } else {
+      updateDatos();
+    }
+  }
+
+  @override
+  void onReady() {
+    if (datos.id == null) {
+      nuevoDato();
+    } else {
+      updateDatos();
+    }
+    super.onReady();
+  }
 }
