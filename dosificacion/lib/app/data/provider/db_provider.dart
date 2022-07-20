@@ -38,7 +38,7 @@ class DbProvider {
     return res;
   }
 
-  Future listar() async {
+  Future<DatosDosificacionModel?> listar() async {
     Database db = await dataBase;
     final List< Map<String, dynamic>> res = await db.query('dosificacion');
     return res.isNotEmpty
