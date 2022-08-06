@@ -1,4 +1,4 @@
-import 'package:dosificacion/app/core/utils/barrel%20files/models.dart';
+import 'package:dosificacion/app/core/utils/barrel_files/models.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 

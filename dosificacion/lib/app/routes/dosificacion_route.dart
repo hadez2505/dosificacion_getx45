@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../core/utils/barrel files/screens.dart';
-import 'package:dosificacion/app/core/utils/barrel files/models.dart';
-import 'package:dosificacion/app/core/utils/barrel files/bindings.dart';
+import '../core/utils/barrel_files/screens.dart';
+import 'package:dosificacion/app/core/utils/barrel_files/models.dart';
+import 'package:dosificacion/app/core/utils/barrel_files/bindings.dart';
 
 class DosificacionRoute {
   static const initialRoute = '/dosificacion';

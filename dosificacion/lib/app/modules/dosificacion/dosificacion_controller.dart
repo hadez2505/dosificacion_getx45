@@ -1,7 +1,6 @@
 import 'dart:math';
 
-import 'package:dosificacion/app/core/utils/barrel%20files/models.dart';
-import 'package:dosificacion/app/modules/dosificacion/dosificacion_repository.dart';
+import 'package:dosificacion/app/core/utils/barrel_files/models.dart';
 import 'package:get/get.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 
@@ -53,7 +52,9 @@ class DosificacionController extends GetxController {
 
   listarDatos() async {
     final res = await DbProvider.db.listar();
-    print(res);
+    print(' este es el caudal del modulo 1: ${res?.caudalModulo1}');
+    print(' este es el caudal del modulo 2: ${res?.caudalModulo2}');
+    print(' este es el id: ${res?.id}');
   }
 
   void setcaudalModulo1(String caudalModulo1) {
@@ -84,7 +85,7 @@ class DosificacionController extends GetxController {
 
   void setSeconds() => _stopWatch.setPresetSecondTime(5);
   displayTime(int value) =>
-      StopWatchTimer.getDisplayTime(value, hours: true, milliSecond: false);
+      StopWatchTimer.getDisplayTime(value, hours: true);
 
   @override
   void onClose() {
@@ -96,13 +97,13 @@ class DosificacionController extends GetxController {
     }
   }
 
-  @override
-  void onReady() {
-    if (datos.id == null) {
-      nuevoDato();
-    } else {
-      updateDatos();
-    }
-    super.onReady();
-  }
+  // @override
+  // void onReady() {
+  //   if (datos.id == null) {
+  //     nuevoDato();
+  //   } else {
+  //     updateDatos();
+  //   }
+  //   super.onReady();
+  // }
 }
