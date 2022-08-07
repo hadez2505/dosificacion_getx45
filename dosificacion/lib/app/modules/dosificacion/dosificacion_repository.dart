@@ -2,30 +2,30 @@ import 'package:dosificacion/app/core/utils/barrel_files/models.dart';
 import 'package:dosificacion/app/data/provider/db_provider.dart';
 
 class DosificacionRepository {
-  DatosDosificacionModel datos = DatosDosificacionModel();
+  static DatosDosificacionModel _datos = DatosDosificacionModel();
 
-  newData(String caudalModulo1, String caudalModulo2) async {
+  static newData(String alturaModulo1, String alturaModulo2) async {
     final newData = DatosDosificacionModel(
-        caudalModulo1: caudalModulo1, caudalModulo2: caudalModulo2);
+        alturaModulo1: alturaModulo1, alturaModulo2: alturaModulo2);
     final id = await DbProvider.db.insert(newData);
     newData.id = id;
-    datos.caudalModulo1 = newData.caudalModulo1;
-    datos.caudalModulo2 = newData.caudalModulo2;
-    datos.id = newData.id;
+    _datos.alturaModulo1 = newData.alturaModulo1;
+    _datos.alturaModulo2 = newData.alturaModulo2;
+    _datos.id = newData.id;
   }
 
-  updateData(String caudalModulo1, String caudalModulo2) async {
+  static updateData(String alturaModulo1, String alturaModulo2) async {
     final newData = DatosDosificacionModel(
-        caudalModulo1: caudalModulo1, caudalModulo2: caudalModulo2);
+        alturaModulo1: alturaModulo1, alturaModulo2: alturaModulo2);
     final id = await DbProvider.db.update(newData);
     newData.id = id;
-    datos.caudalModulo1 = newData.caudalModulo1;
-    datos.caudalModulo2 = newData.caudalModulo2;
-    datos.id = newData.id;
+    _datos.alturaModulo1 = newData.alturaModulo1;
+    _datos.alturaModulo2 = newData.alturaModulo2;
+    _datos.id = newData.id;
   }
 
-  listarData() async {
+  static listarData() async {
     final res = await DbProvider.db.listar();
-    print(res);
+    print(res?.alturaModulo1);
   }
 }

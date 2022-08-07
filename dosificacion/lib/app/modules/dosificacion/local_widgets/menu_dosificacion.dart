@@ -25,7 +25,9 @@ class MenuDosificacion extends StatelessWidget {
             Icons.arrow_forward_ios_outlined,
           ),
           onTap: () {
-            Get.toNamed(menuOptionsDosificacion[i].route); //mas facil dandole nombre a mis rutas
+            print("hola");
+            Get.toNamed(menuOptionsDosificacion[i]
+                .route); //mas facil dandole nombre a mis rutas
           },
         ),
       ),

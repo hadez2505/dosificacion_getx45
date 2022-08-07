@@ -23,7 +23,7 @@ class DbProvider {
     print(path);
 
     //Crear base de datos
-    return openDatabase(path, version: 1, onCreate: _onCreateDb);
+    return openDatabase(path, version: 2, onCreate: _onCreateDb);
   }
 
   Future<int> insert(DatosDosificacionModel dosificacionModel) async {
@@ -40,18 +40,16 @@ class DbProvider {
 
   Future<DatosDosificacionModel?> listar() async {
     Database db = await dataBase;
-    final List< Map<String, dynamic>> res = await db.query('dosificacion');
-    return res.isNotEmpty
-            ? DatosDosificacionModel.fromMap(res.last)
-            :null;
+    final List<Map<String, dynamic>> res = await db.query('dosificacion');
+    return res.isNotEmpty ? DatosDosificacionModel.fromMap(res.last) : null;
   }
 
   Future _onCreateDb(Database db, int version) async {
     await db.execute('''
       CREATE TABLE dosificacion(
         id INTEGER PRIMARY KEY,
-        caudalModulo1 TEXT,
-        caudalModulo2 TEXT  
+        alturaModulo1 TEXT,
+        alturaModulo2 TEXT  
       );
       
     ''');

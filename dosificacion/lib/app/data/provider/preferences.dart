@@ -16,12 +16,12 @@ class Preferences {
       _prefs.getString('alturaModulo2') ?? _alturaModulo2;
 
   static set alturaModulo1(String value) {
-    _alturaModulo1 = alturaModulo1;
+    _alturaModulo1 = value;
     _prefs.setString('alturaModulo1', value);
   }
 
   static set alturaModulo2(String value) {
-    _alturaModulo2 = alturaModulo2;
+    _alturaModulo2 = value;
     _prefs.setString('alturaModulo2', value);
   }
 }

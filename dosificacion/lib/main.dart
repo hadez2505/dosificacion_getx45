@@ -6,8 +6,6 @@ import 'app/core/utils/barrel_files/routes.dart';
 import 'app/data/provider/preferences.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Preferences.int();
   runApp(MyApp());
 }
 
