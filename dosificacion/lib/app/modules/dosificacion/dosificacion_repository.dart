@@ -1,8 +1,10 @@
 import 'package:dosificacion/app/core/utils/barrel_files/models.dart';
-import 'package:dosificacion/app/data/provider/db_provider.dart';
+import 'package:dosificacion/app/core/utils/barrel_files/providers.dart';
 
 class DosificacionRepository {
   static DatosDosificacionModel _datos = DatosDosificacionModel();
+
+  static DatosDosificacionModel get datos => _datos;
 
   static newData(String alturaModulo1, String alturaModulo2) async {
     final newData = DatosDosificacionModel(
@@ -24,8 +26,14 @@ class DosificacionRepository {
     _datos.id = newData.id;
   }
 
-  static listarData() async {
+  static data() async {
     final res = await DbProvider.db.listar();
-    print(res?.alturaModulo1);
+    if (res != null) {
+      print('inicio de preceso');
+      _datos.alturaModulo1 = res.alturaModulo1;
+      _datos.alturaModulo2 = res.alturaModulo2;
+      _datos.id = res.id;
+      print('fin del proceso');
+    }
   }
 }

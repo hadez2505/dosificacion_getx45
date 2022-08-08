@@ -20,7 +20,6 @@ class DbProvider {
     //path de donde almacenaremos la base de datos
     final documentsDirectory = await getDatabasesPath();
     final path = join(documentsDirectory, dbName);
-    print(path);
 
     //Crear base de datos
     return openDatabase(path, version: 2, onCreate: _onCreateDb);

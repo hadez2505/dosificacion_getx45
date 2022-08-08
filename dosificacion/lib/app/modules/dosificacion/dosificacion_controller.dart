@@ -12,7 +12,7 @@ class DosificacionController extends GetxController {
   var _alturaModulo1 = '0'.obs;
   var _alturaModulo2 = '0'.obs;
   final _stopWatch = StopWatchTimer(mode: StopWatchMode.countUp);
-  final DatosDosificacionModel datos = DatosDosificacionModel();
+  DatosDosificacionModel datos = DatosDosificacionModel();
 
   RxString get caudalModulo1 => _caudalModulo1;
   RxString get caudalModulo2 => _caudalModulo2;
@@ -21,12 +21,26 @@ class DosificacionController extends GetxController {
 
   @override
   void onInit() {
-    _stopWatch.rawTime.listen((value) =>
-        print('rawTime $value ${StopWatchTimer.getDisplayTime(value)}'));
-    // _stopWatch.minuteTime.listen((value) => print('minuteTime $value'));
-    _stopWatch.secondTime.listen((value) => print('secondTime $value'));
-    DosificacionRepository.listarData();
+    print('onInit');
     super.onInit();
+  }
+
+  @override
+  void onReady() async {
+    print('onReady');
+    await DosificacionRepository.data();
+    ensayo();
+    super.onReady();
+  }
+
+  ensayo() {
+    datos = DosificacionRepository.datos;
+    if (datos.id != null) {
+      _alturaModulo1.value = datos.alturaModulo1!;
+      _alturaModulo2.value = datos.alturaModulo2!;
+    } else {
+      print('no se pudo');
+    }
   }
 
   void setcaudalModulo1(String caudalModulo1) {
