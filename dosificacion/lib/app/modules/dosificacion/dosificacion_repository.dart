@@ -4,7 +4,7 @@ import 'package:dosificacion/app/core/utils/barrel_files/providers.dart';
 class DosificacionRepository {
   static DatosDosificacionModel _datos = DatosDosificacionModel();
 
-  static DatosDosificacionModel get datos => _datos;
+  DatosDosificacionModel get datos => _datos;
 
   static newData(String alturaModulo1, String alturaModulo2) async {
     final newData = DatosDosificacionModel(
@@ -26,7 +26,7 @@ class DosificacionRepository {
     _datos.id = newData.id;
   }
 
-  static data() async {
+  data() async {
     final res = await DbProvider.db.listar();
     if (res != null) {
       print('inicio de preceso');

@@ -35,7 +35,7 @@ class CustomInputField extends StatelessWidget {
       onChanged: (value) {
         if (setFunction != null && function != null) {
           setFunction!(value, function);
-        }else if(setFunction != null) {
+        } else if (setFunction != null) {
           setFunction!(value);
         }
       },

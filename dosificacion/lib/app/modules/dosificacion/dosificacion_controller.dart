@@ -9,14 +9,15 @@ class DosificacionController extends GetxController {
   var _caudalModulo1 = '0'.obs;
   var _caudalModulo2 = '0'.obs;
   var _caudalTotal = '0'.obs;
-  var _alturaModulo1 = '0'.obs;
+  var _alturaModulo1 = '0.35'.obs;
   var _alturaModulo2 = '0'.obs;
   final _stopWatch = StopWatchTimer(mode: StopWatchMode.countUp);
   DatosDosificacionModel datos = DatosDosificacionModel();
-
+  final _data = DosificacionRepository();
   RxString get caudalModulo1 => _caudalModulo1;
   RxString get caudalModulo2 => _caudalModulo2;
   RxString get caudalTotal => _caudalTotal;
+  RxString get alturaModulo1 => _alturaModulo1;
   StopWatchTimer get stopWatch => _stopWatch;
 
   @override
@@ -27,14 +28,19 @@ class DosificacionController extends GetxController {
 
   @override
   void onReady() async {
+    // await DosificacionRepository.data();
+    await _data.data();
     print('onReady');
-    await DosificacionRepository.data();
-    ensayo();
+    _data.datos.id != null
+        ? _alturaModulo1.value = _data.datos.alturaModulo1!
+        : _alturaModulo1.value = '';
+    setCaudal(_alturaModulo1.value, setcaudalModulo1);
+    // ensayo();
     super.onReady();
   }
 
   ensayo() {
-    datos = DosificacionRepository.datos;
+    // datos = DosificacionRepository.datos;
     if (datos.id != null) {
       _alturaModulo1.value = datos.alturaModulo1!;
       _alturaModulo2.value = datos.alturaModulo2!;
