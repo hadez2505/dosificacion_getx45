@@ -6,24 +6,16 @@ class DosificacionRepository {
 
   DatosDosificacionModel get datos => _datos;
 
-  static newData(String alturaModulo1, String alturaModulo2) async {
-    final newData = DatosDosificacionModel(
-        alturaModulo1: alturaModulo1, alturaModulo2: alturaModulo2);
-    final id = await DbProvider.db.insert(newData);
-    newData.id = id;
-    _datos.alturaModulo1 = newData.alturaModulo1;
-    _datos.alturaModulo2 = newData.alturaModulo2;
-    _datos.id = newData.id;
+  newData(DatosDosificacionModel datos) async {
+    final id = await DbProvider.db.insert(datos);
+    datos.id = id;
+    _datos.id = datos.id;
   }
 
-  static updateData(String alturaModulo1, String alturaModulo2) async {
-    final newData = DatosDosificacionModel(
-        alturaModulo1: alturaModulo1, alturaModulo2: alturaModulo2);
-    final id = await DbProvider.db.update(newData);
-    newData.id = id;
-    _datos.alturaModulo1 = newData.alturaModulo1;
-    _datos.alturaModulo2 = newData.alturaModulo2;
-    _datos.id = newData.id;
+  updateData(DatosDosificacionModel datos) async {
+    final id = await DbProvider.db.update(datos);
+    datos.id = id;
+    _datos.id = datos.id;
   }
 
   data() async {

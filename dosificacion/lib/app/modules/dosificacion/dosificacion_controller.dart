@@ -9,7 +9,7 @@ class DosificacionController extends GetxController {
   var _caudalModulo1 = '0'.obs;
   var _caudalModulo2 = '0'.obs;
   var _caudalTotal = '0'.obs;
-  var _alturaModulo1 = '0.35'.obs;
+  var _alturaModulo1 = '0.25'.obs;
   var _alturaModulo2 = '0'.obs;
   final _stopWatch = StopWatchTimer(mode: StopWatchMode.countUp);
   DatosDosificacionModel datos = DatosDosificacionModel();
@@ -27,25 +27,33 @@ class DosificacionController extends GetxController {
   }
 
   @override
+  void onClose() {
+    // TODO: implement onClose
+    super.onClose();
+  }
+
+  @override
   void onReady() async {
-    // await DosificacionRepository.data();
     await _data.data();
     print('onReady');
     _data.datos.id != null
         ? _alturaModulo1.value = _data.datos.alturaModulo1!
-        : _alturaModulo1.value = '';
+        : _alturaModulo1.value;
     setCaudal(_alturaModulo1.value, setcaudalModulo1);
     // ensayo();
     super.onReady();
   }
 
-  ensayo() {
-    // datos = DosificacionRepository.datos;
-    if (datos.id != null) {
-      _alturaModulo1.value = datos.alturaModulo1!;
-      _alturaModulo2.value = datos.alturaModulo2!;
-    } else {
-      print('no se pudo');
+  savedData() async {
+    datos.alturaModulo1 = _alturaModulo1.value;
+    datos.alturaModulo2 = _alturaModulo2.value;
+    try {
+      await _data.newData(datos);
+      print('Se guardo');
+      print('estos son los datos del modulo 1 ${datos.alturaModulo1}');
+      print('estos son los datos del modulo 2 ${datos.alturaModulo2}');
+    } catch (e) {
+      print(e);
     }
   }
 

@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
+import 'package:get/get.dart';
 
 import 'package:dosificacion/app/routes/dosificacion_route.dart';
+import 'package:dosificacion/app/core/utils/barrel_files/controllers.dart';
 
 class MenuDosificacion extends StatelessWidget {
-  const MenuDosificacion({Key? key}) : super(key: key);
+  const MenuDosificacion({
+    Key? key,
+    required this.function,
+  }) : super(key: key);
+
+  final Function function;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +31,7 @@ class MenuDosificacion extends StatelessWidget {
             Icons.arrow_forward_ios_outlined,
           ),
           onTap: () {
-            print("hola");
+            function();
             Get.toNamed(menuOptionsDosificacion[i]
                 .route); //mas facil dandole nombre a mis rutas
           },

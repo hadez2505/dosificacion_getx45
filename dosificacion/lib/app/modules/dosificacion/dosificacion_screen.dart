@@ -26,7 +26,7 @@ class DosificacionScreen extends StatelessWidget {
                 ),
                 Container(
                     decoration: AppTheme.decorationContainer,
-                    child: const MenuDosificacion())
+                    child: MenuDosificacion(function: _.savedData))
               ],
             ),
           ));
